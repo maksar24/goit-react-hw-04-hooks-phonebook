@@ -11,16 +11,6 @@ export default function App() {
   );
   const [filter, setFilter] = useState("");
 
-  const addNewContact = (newContact) => {
-    const similarName = contacts.map((el) => el.name);
-
-    if (similarName.includes(newContact.name)) {
-      alert(`${newContact.name} is already in contacts`);
-    } else {
-      setContacts((prevContacts) => [newContact, ...prevContacts]);
-    }
-  };
-
   useEffect(() => {
     window.localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
@@ -31,6 +21,16 @@ export default function App() {
 
   const removeContact = (id) => {
     setContacts(contacts.filter((el) => el.id !== id));
+  };
+
+  const addNewContact = (newContact) => {
+    const similarName = contacts.map((el) => el.name);
+
+    if (similarName.includes(newContact.name)) {
+      alert(`${newContact.name} is already in contacts`);
+    } else {
+      setContacts((prevContacts) => [newContact, ...prevContacts]);
+    }
   };
 
   return (
